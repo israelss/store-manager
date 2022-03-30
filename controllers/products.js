@@ -19,8 +19,17 @@ const insert = async (req, res) => {
   return res.status(success.OK).json({ id, name, quantity });
 };
 
+const updateById = async (req, res) => {
+  const { id } = req.params;
+  const { name, quantity } = req.body;
+  const wasUpdated = await productsServices.updateById({ id, name, quantity });
+  if (!wasUpdated) return res.status(clientError.NOT_FOUND).json({ message: 'Product not found' });
+  return res.status(success.OK).json({ id, name, quantity });
+};
+
 module.exports = {
   getAll,
   getById,
   insert,
+  updateById,
 };
