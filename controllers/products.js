@@ -13,7 +13,14 @@ const getById = async (req, res) => {
   return res.status(success.OK).json(result);
 };
 
+const insert = async (req, res) => {
+  const { name, quantity } = req.body;
+  const { id } = await productsServices.insert({ name, quantity });
+  return res.status(success.OK).json({ id, name, quantity });
+};
+
 module.exports = {
   getAll,
   getById,
+  insert,
 };
