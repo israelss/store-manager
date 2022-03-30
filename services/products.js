@@ -25,10 +25,16 @@ const updateById = async (productObject) => {
   return wasUpdated;
 };
 
+const deleteById = async (id) => {
+  const wasDeleted = await productsModels.deleteById(id);
+  return wasDeleted;
+};
+
 module.exports = {
   getAll,
   getById,
   getByName,
   insert,
   updateById,
+  deleteById,
 };

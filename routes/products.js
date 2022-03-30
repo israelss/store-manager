@@ -20,6 +20,8 @@ router.put(
   productsValidators.nameValidation,
   productsValidators.quantityValidation,
   productsController.updateById,
-  );
+);
+
+router.delete('/:id', productsController.deleteById);
 
 module.exports = router;
