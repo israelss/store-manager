@@ -1,5 +1,6 @@
 const success = {
   OK: 200,
+  NO_CONTENT: 204,
 };
 
 const clientError = {
