@@ -10,7 +10,13 @@ const getById = async (id) => {
   return result.length > 0 ? result : null;
 };
 
+const insert = async (productArray) => {
+  const insertedSale = await salesModels.insert(productArray);
+  return insertedSale;
+};
+
 module.exports = {
   getAll,
   getById,
+  insert,
 };

@@ -13,7 +13,13 @@ const getById = async (req, res) => {
   return res.status(success.OK).json(result);
 };
 
+const insert = async (req, res) => {
+  const insertedSale = await salesServices.insert(req.body);
+  return res.status(success.CREATED).json(insertedSale);
+};
+
 module.exports = {
   getAll,
   getById,
+  insert,
 };

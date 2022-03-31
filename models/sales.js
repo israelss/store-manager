@@ -29,7 +29,23 @@ const getById = async (id) => {
   return result;
 };
 
+const insert = async (productsArray) => {
+  const [{ insertId: saleId }] = await connection.execute(
+    'INSERT INTO sales (date) VALUES (NOW())',
+  );
+
+  const arrayToInsert = productsArray
+    .map(({ productId, quantity }) => [saleId, productId, quantity]);
+
+  await connection.query(
+    'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES ?',
+    [arrayToInsert],
+  );
+  return { id: saleId, itemsSold: productsArray };
+};
+
 module.exports = {
   getAll,
   getById,
+  insert,
 };
