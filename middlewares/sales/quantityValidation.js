@@ -11,12 +11,19 @@ const quantitySchema = Joi.object({
 });
 
 const quantityValidation = (req, res, next) => {
-  const { quantity } = req.body;
+  const saleArray = req.body;
 
-  const { error } = quantitySchema.validate({ quantity });
+  const error = saleArray
+    .map(({ quantity }) => {
+    const resul = quantitySchema
+        .validate({ quantity });
+        return resul;
+  })
+    .filter((result) => result.error !== undefined)
+    .pop();
 
   if (error) {
-    const [details] = error.details;
+    const [details] = error.error.details;
     const { type, message } = details;
     return res.status(statusCodesMap[type]).json({ message });
   }

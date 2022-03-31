@@ -10,12 +10,19 @@ const productIdSchema = Joi.object({
 });
 
 const productIdValidation = (req, res, next) => {
-  const { productId } = req.body;
+  const saleArray = req.body;
 
-  const { error } = productIdSchema.validate({ productId });
+  const error = saleArray
+    .map(({ productId }) => {
+    const resul = productIdSchema
+        .validate({ productId });
+        return resul;
+  })
+    .filter((result) => result.error !== undefined)
+    .pop();
 
   if (error) {
-    const [details] = error.details;
+    const [details] = error.error.details;
     const { type, message } = details;
     return res.status(statusCodesMap[type]).json({ message });
   }
