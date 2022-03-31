@@ -10,8 +10,8 @@ router.get('/:id', productsController.getById);
 router.post(
   '/',
   productsValidators.nameValidation,
-  productsValidators.alreadyExists,
   productsValidators.quantityValidation,
+  productsValidators.alreadyExists,
   productsController.insert,
 );
 
