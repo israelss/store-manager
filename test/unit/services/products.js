@@ -146,7 +146,7 @@ describe('Products services', () => {
     });
 
     it("returns false if the product was not found", async () => {
-      const result = await productsModel.deleteById(100);
+      const result = await productsService.deleteById(100);
       expect(result).to.be.false;
     });
   });
