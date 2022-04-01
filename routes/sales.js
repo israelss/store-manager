@@ -1,6 +1,7 @@
 const express = require('express');
 const salesController = require('../controllers/sales');
 const salesValidators = require('../middlewares/sales');
+const productsValidators = require('../middlewares/products');
 
 const router = express.Router();
 
@@ -9,7 +10,7 @@ router.route('/')
   .post(
     salesValidators.productIdValidation,
     salesValidators.quantityValidation,
-    salesValidators.checkInventory,
+    productsValidators.checkInventory,
     salesController.insert,
   );
 
