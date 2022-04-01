@@ -9,6 +9,7 @@ router.route('/')
   .post(
     salesValidators.productIdValidation,
     salesValidators.quantityValidation,
+    salesValidators.checkInventory,
     salesController.insert,
   );
 
