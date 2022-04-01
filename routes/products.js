@@ -4,24 +4,23 @@ const productsValidators = require('../middlewares/products');
 
 const router = express.Router();
 
-router.get('/', productsController.getAll);
-router.get('/:id', productsController.getById);
+router.route('/')
+  .get(productsController.getAll)
+  .post(
+    productsValidators.nameValidation,
+    productsValidators.quantityValidation,
+    productsValidators.alreadyExists,
+    productsController.insert,
+  );
 
-router.post(
-  '/',
-  productsValidators.nameValidation,
-  productsValidators.quantityValidation,
-  productsValidators.alreadyExists,
-  productsController.insert,
-);
-
-router.put(
-  '/:id',
-  productsValidators.nameValidation,
-  productsValidators.quantityValidation,
-  productsController.updateById,
-);
-
-router.delete('/:id', productsController.deleteById);
+router.route('/:id')
+  .get(productsValidators.checkExistentId, productsController.getById)
+  .delete(productsValidators.checkExistentId, productsController.deleteById)
+  .put(
+    productsValidators.nameValidation,
+    productsValidators.quantityValidation,
+    productsValidators.checkExistentId,
+    productsController.updateById,
+  );
 
 module.exports = router;
