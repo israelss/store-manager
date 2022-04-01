@@ -134,4 +134,21 @@ describe('Sales controllers', () => {
       expect(response.json.calledWith(mockUpdatedSale)).to.be.true;
     });
   });
+  describe('deleteById', () => {
+    before(() => {
+      request.params = { id: 2 };
+      stub(salesService, 'deleteById')
+    });
+
+    after(() => {
+      salesService.deleteById.restore();
+      request.params = undefined
+    });
+
+    it("deletes the sale", async () => {
+      await salesController.deleteById(request, response);
+      expect(response.status.calledWith(204)).to.be.true;
+      expect(response.end.called).to.be.true;
+    });
+  });
 });

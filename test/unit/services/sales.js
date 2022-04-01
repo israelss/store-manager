@@ -127,4 +127,27 @@ describe('Sales services', () => {
       expect(result).to.be.false;
     });
   });
+  describe('deleteById', () => {
+    before(() => {
+      stub(salesModel, 'deleteById')
+        .onFirstCall()
+        .resolves(true)
+        .onSecondCall()
+        .resolves(false);
+    });
+
+    after(() => {
+      salesModel.deleteById.restore();
+    });
+
+    it("returns true if the sale was uptaded", async () => {
+      const result = await salesService.deleteById(1);
+      expect(result).to.be.true;
+    });
+
+    it("returns false if the sale was not found", async () => {
+      const result = await salesService.deleteById(100);
+      expect(result).to.be.false;
+    });
+  });
 });

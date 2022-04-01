@@ -107,4 +107,19 @@ describe('Sales model', () => {
       expect(result).to.be.false;
     });
   });
+  describe('deleteById', () => {
+    it("returns true if the sale was deleted", async () => {
+      stub(connection, 'execute').resolves(mockRowsAffected);
+      const result = await salesModel.deleteById( 1);
+
+      expect(result).to.be.true;
+    });
+
+    it("returns false if the sale was not found", async () => {
+      stub(connection, 'execute').resolves(mockNoRowsAffected);
+      const result = await salesModel.deleteById(100);
+
+      expect(result).to.be.false;
+    });
+  });
 });
