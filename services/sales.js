@@ -20,7 +20,13 @@ const updateById = async (productObject) => {
   return wasUpdated;
 };
 
+const deleteById = async (id) => {
+  const wasDeleted = await salesModels.deleteById(id);
+  return wasDeleted;
+};
+
 module.exports = {
+  deleteById,
   getAll,
   getById,
   insert,

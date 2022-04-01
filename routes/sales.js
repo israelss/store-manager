@@ -14,6 +14,7 @@ router.route('/')
 
 router.route('/:id')
   .get(salesValidators.checkExistentId, salesController.getById)
+  .delete(salesValidators.checkExistentId, salesController.deleteById)
   .put(
     salesValidators.productIdValidation,
     salesValidators.quantityValidation,
