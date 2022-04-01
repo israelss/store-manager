@@ -1,4 +1,4 @@
-const { success, clientError } = require('../helpers/status_codes');
+const { success } = require('../helpers/status_codes');
 const salesServices = require('../services/sales');
 
 const getAll = async (_req, res) => {
@@ -7,10 +7,8 @@ const getAll = async (_req, res) => {
 };
 
 const getById = async (req, res) => {
-  const { id } = req.params;
-  const result = await salesServices.getById(id);
-  if (!result) return res.status(clientError.NOT_FOUND).json({ message: 'Sale not found' });
-  return res.status(success.OK).json(result);
+  const { sale } = req;
+  return res.status(success.OK).json(sale);
 };
 
 const insert = async (req, res) => {
@@ -22,8 +20,7 @@ const updateById = async (req, res) => {
   const { id } = req.params;
   const productsArray = req.body;
   const [{ productId, quantity }] = productsArray;
-  const wasUpdated = await salesServices.updateById({ id, productId, quantity });
-  if (!wasUpdated) return res.status(clientError.NOT_FOUND).json({ message: 'Product not found' });
+  await salesServices.updateById({ id, productId, quantity });
   return res.status(success.OK).json({ saleId: id, itemUpdated: productsArray });
 };
 
