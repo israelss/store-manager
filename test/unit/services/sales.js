@@ -43,7 +43,6 @@ describe('Sales services', () => {
   ];
   const mockInsertedSale = { id: 1, itemsSold: mockNewSale };
   const mockNoSales = [];
-  const mockIdReturned = { id: 1 };
 
   describe('getAll', () => {
     before(() => {
