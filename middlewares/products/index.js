@@ -3,6 +3,7 @@ const checkExistentId = require('./checkExistentId');
 const checkInventory = require('./checkInventory');
 const nameValidation = require('./nameValidation');
 const quantityValidation = require('./quantityValidation');
+const updateQuantity = require('./updateQuantity');
 
 module.exports = {
   alreadyExists,
@@ -10,4 +11,5 @@ module.exports = {
   checkInventory,
   nameValidation,
   quantityValidation,
+  updateQuantity,
 };

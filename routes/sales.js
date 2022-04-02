@@ -11,16 +11,22 @@ router.route('/')
     salesValidators.productIdValidation,
     salesValidators.quantityValidation,
     productsValidators.checkInventory,
+    productsValidators.updateQuantity,
     salesController.insert,
   );
 
 router.route('/:id')
   .get(salesValidators.checkExistentId, salesController.getById)
-  .delete(salesValidators.checkExistentId, salesController.deleteById)
+  .delete(
+    salesValidators.checkExistentId,
+    productsValidators.updateQuantity,
+    salesController.deleteById,
+  )
   .put(
     salesValidators.productIdValidation,
     salesValidators.quantityValidation,
     salesValidators.checkExistentId,
+    productsValidators.updateQuantity,
     salesController.updateById,
   );
 
