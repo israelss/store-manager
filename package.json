@@ -1,5 +1,5 @@
 {
-  "name": "sd-0x-store-manager",
+  "name": "store-manager",
   "version": "1.0.0",
   "description": "Simple CRUD to sales and products",
   "main": "index.js",
@@ -7,8 +7,7 @@
     "test": "jest --runInBand",
     "test:mocha": "nyc --all --include models --include services --include controllers mocha test/unit/**/*.js --exit",
     "start": "node index.js",
-    "debug": "nodemon index.js",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx"
+    "debug": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -26,14 +25,12 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-rescue": "^1.1.26",
-    "frisby": "^2.1.2",
     "jest": "^26.4.1",
     "joi": "^17.6.0",
     "mysql2": "^2.3.0"
   },
   "devDependencies": {
     "chai": "^4.3.4",
-    "eslint-config-trybe-backend": "^1.0.3",
     "mocha": "^8.4.0",
     "mysql-import": "^5.0.21",
     "nyc": "^15.1.0",
